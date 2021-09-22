@@ -23,18 +23,15 @@ class HtmlController {
 private fun getMessage() = "Blog2"
 
 
-private fun getSummaryOfNumber2020(numbers: List<Int>): String {
+private fun getSummaryOfNumber2020(numbers: List<Int>): String? {
 
     val complements = numbers.associateBy { 2020 - it }
-
-    if (complements != null) {
-        numbers.forEach { number ->
-            val complement = complements[number]
-            if (complement != null) {
-                println(">>>> + $number + $complement ")
-                return "$number $complement = " + number * complement
-            }
+    numbers.mapNotNull { number ->
+        val complement = complements[number]
+        if (complement != null) {
+            println(">>>> + $number + $complement ")
+            return "$number $complement = " + number * complement
         }
     }
-    return "1"
+    return null
 }
