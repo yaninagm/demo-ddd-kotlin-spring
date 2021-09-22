@@ -25,19 +25,12 @@ private fun getMessage() = "Blog2"
 
 private fun getSummaryOfNumber2020(list: List<Int>): String {
 
-    for ((index1, n1) in list.withIndex()) {
-        for ((index2, n2) in list.withIndex()){
+    list.forEachIndexed { index1, n1 ->
+        list.forEachIndexed { index2, n2 ->
             if(n1 + n2 == 2020 && index2 > index1){
-                val operationMult = n1 * n2
-                val response = "$n1 $n2 = $operationMult"
-                println( response)
-                return response
-
+                return "$n1 $n2 = " + n1 * n2
             }
         }
     }
-
     return "1"
 }
-
-private val exampleNumberList = listOf(1721, 979, 366, 299, 675, 1456)
