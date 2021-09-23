@@ -1,5 +1,6 @@
-package com.example.demoDDDYani
+package com.example.demoDDDYani.infrastructure.framework.controller
 
+import com.example.demoDDDYani.service.pruebas.AdventoOfCodeService
 import java.io.File
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -7,7 +8,9 @@ import org.springframework.ui.set
 import org.springframework.web.bind.annotation.GetMapping
 
 @Controller
-class HtmlController {
+class HtmlController(
+    private val adventoOfCodeService: AdventoOfCodeService
+) {
 
     @GetMapping("/")
     fun blog(model: Model): String {
@@ -18,20 +21,11 @@ class HtmlController {
 
         return "blog"
     }
+
+    fun getSummaryOfNumber2020(numbers: List<Int>, limitSearching: Int? = 2020): String? {
+        val pair = adventoOfCodeService.searchPairToSum(numbers, limitSearching)
+        return "${pair.first} ${pair.second} = " + pair.first * pair.second
+    }
 }
 
 private fun getMessage() = "Blog2"
-
-
-private fun getSummaryOfNumber2020(numbers: List<Int>): String? {
-
-    val complements = numbers.associateBy { 2020 - it }
-    numbers.mapNotNull { number ->
-        val complement = complements[number]
-        if (complement != null) {
-            println(">>>> + $number + $complement ")
-            return "$number $complement = " + number * complement
-        }
-    }
-    return null
-}
