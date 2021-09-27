@@ -13,5 +13,4 @@ class ApplicationConfiguration {
     fun adventoOfCodeService(
     ): AdventoOfCodeService =
         AdventoOfCodeService()
-
 }

@@ -26,8 +26,9 @@ class IntegrationTests(
     @Test
     fun `Assert blog page title, content and status code`() {
         val entity = restTemplate.getForEntity<String>("/")
+
         assertThat(entity.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(entity.body).contains("<title>Blog2 1093 927 &#x3D; 1013211</title>")
+        assertThat(entity.body).contains("<title>Result: 1093 927 &#x3D; 1013211</title>")
     }
 
     @Test

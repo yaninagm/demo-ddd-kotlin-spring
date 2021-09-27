@@ -2,24 +2,21 @@ package com.example.demoDDDYani.infrastructure.framework.controller
 
 import com.example.demoDDDYani.service.pruebas.AdventoOfCodeService
 import java.io.File
-import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.ui.set
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RestController
 
-@Controller
-class HtmlController(
+@RestController
+class DemoController(
     private val adventoOfCodeService: AdventoOfCodeService
 ) {
 
-    @GetMapping("/")
+    @GetMapping("/demo")
     fun blog(model: Model): String {
         val expenseReport = File("src/main/kotlin/com/example/demoDDDYani/expense_report")
             .readLines()
             .map(String::toInt)
-        val title = getMessage() + " " + getSummaryOfNumber2020(expenseReport)
-        model["title"] = title
-        return "blog"
+        return getMessage() + " " + getSummaryOfNumber2020(expenseReport)
     }
 
     fun getSummaryOfNumber2020(numbers: List<Int>, limitSearching: Int? = 2020): String {
