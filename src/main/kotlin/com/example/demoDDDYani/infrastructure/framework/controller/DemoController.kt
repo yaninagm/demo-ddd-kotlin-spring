@@ -5,8 +5,10 @@ import java.io.File
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
+import springfox.documentation.swagger2.annotations.EnableSwagger2
 
 @RestController
+@EnableSwagger2
 class DemoController(
     private val adventoOfCodeService: AdventoOfCodeService
 ) {
